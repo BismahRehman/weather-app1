@@ -81,15 +81,15 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-        cityName = getCityName(location.getLongitude(), location.getLatitude());
-        getWeatherInfo(cityName);
+//        cityName = getCityName(location.getLongitude(), location.getLatitude());
+//        getWeatherInfo(cityName);
 
-//        if (location != null) {
-//            cityName = getCityName(location.getLongitude(), location.getLatitude());
-//            getWeatherInfo(cityName);
-//        } else {
-//            Toast.makeText(this, "Unable to get location", Toast.LENGTH_SHORT).show();
-//        }
+        if (location != null) {
+            cityName = getCityName(location.getLongitude(), location.getLatitude());
+            getWeatherInfo(cityName);
+        } else {
+            Toast.makeText(this, "Unable to get location", Toast.LENGTH_SHORT).show();
+        }
 
         searchIV.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,12 +121,12 @@ public class MainActivity extends AppCompatActivity {
 
 
     private String getCityName(double longitude, double latitude) {
-               String cityName = "Not Found";
-             Geocoder gcd = new Geocoder(getBaseContext(), Locale.getDefault());
-              try {
-                   List<Address> addresses = gcd.getFromLocation(latitude, longitude, 10);
+        String cityName = "Not Found";
+        Geocoder gcd = new Geocoder(getBaseContext(), Locale.getDefault());
+        try {
+            List<Address> addresses = gcd.getFromLocation(latitude, longitude, 10);
 
-                  for (Address adr : addresses) {
+            for (Address adr : addresses) {
                 if (adr != null) {
                     String city = adr.getLocality();
                     if (city != null && !city.equals("")) {
@@ -134,21 +134,21 @@ public class MainActivity extends AppCompatActivity {
 
                     } else {
                         Log.d("TAG","city not found");
-                       Toast.makeText(this, "City not found", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "City not found", Toast.LENGTH_SHORT).show();
                     }
-               }
+                }
             }
-       }
-              catch (Exception e) {
-                  e.printStackTrace();
-              }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
 
-          return cityName;
-       }
+        return cityName;
+    }
 
-         private void getWeatherInfo(String cityName) {
-          String url ="http://api.weatherapi.com/v1/current.json?key=d1cdf2fc5c5c445aa3270202242509&q="+cityName+"&aqi=no";
-           cityNameTV.setText(cityName);
+    private void getWeatherInfo(String cityName) {
+        String url ="http://api.weatherapi.com/v1/current.json?key=d1cdf2fc5c5c445aa3270202242509&q="+cityName+"&aqi=no";
+        cityNameTV.setText(cityName);
         RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -176,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
                     JSONObject forcast0= forecastObj.getJSONArray("forecastday").getJSONObject(0);
                     JSONArray hourArray =forcast0.getJSONArray ( "hour");
 //
-     //                 JSONArray hourArray = response.getJSONObject("forecast").getJSONArray("forecastday").getJSONObject(0).getJSONArray("hour");
+                    //                 JSONArray hourArray = response.getJSONObject("forecast").getJSONArray("forecastday").getJSONObject(0).getJSONArray("hour");
 
                     for (int i = 0; i < hourArray.length(); i++) {
                         JSONObject hourObj = hourArray.getJSONObject(i);
@@ -203,5 +203,5 @@ public class MainActivity extends AppCompatActivity {
         });
 
         requestQueue.add(jsonObjectRequest);
-  }
+    }
 }
