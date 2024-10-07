@@ -48,15 +48,14 @@
             android:orientation="horizontal"
             android:id="@+id/idLLEdt"
             android:layout_below="@id/idTVCityName"
-            android:weightSum="5"
-            >
+            android:weightSum="5">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/idTILCity"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:layout_weight="4.5"
+                android:layout_weight="5"
                 android:background="#A6FFFFFF"
                 android:hint="Enter city name"
                 android:padding="5dp"
@@ -74,12 +73,15 @@
                     android:singleLine="true"
                     android:textColor="@color/black_shade_1"
                     android:textSize="14sp" />
+
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <ImageView
                 android:id="@+id/idIVSearch"
                 android:layout_width="40dp"
-                android:layout_height="52dp"android:layout_marginTop="20dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="20dp"
                 android:background="@android:color/transparent"
                 android:src="@drawable/baseline_search_24"
                 app:tint="@color/white" />
@@ -167,7 +169,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
-        android:text=" "
+        android:text=": "
         android:textAlignment="center"
         android:layout_marginLeft="20dp"
         android:textSize="32sp" />
@@ -198,7 +200,7 @@
                 android:id="@+id/idTVWind"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" "
+            android:text=": "
                 android:textAlignment="center"
                 android:layout_marginTop="60dp"
                 android:textSize="30sp" />
@@ -207,8 +209,8 @@
         <ImageView
             android:layout_marginTop="15dp"
             android:id="@+id/idIVWind"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_marginLeft="70dp"
             android:src="@drawable/wind" />
 
@@ -233,7 +235,7 @@
                 android:id="@+id/idTVPresure"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" "
+                android:text=" :"
                 android:textAlignment="center"
                 android:layout_marginTop="60dp"
                 android:textSize="30sp" />
