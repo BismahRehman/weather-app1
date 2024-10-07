@@ -1,3 +1,4 @@
+
 package com.example.weather_app;
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -39,8 +40,8 @@ public class WeatherRVAdapter extends RecyclerView.Adapter<WeatherRVAdapter.View
     @Override
     public void onBindViewHolder(@NonNull WeatherRVAdapter.ViewHolder holder, int position) {
 
-      WeatherRVModal modal= WeatherRVModalarrayList.get(position);
-      holder.temperatureTV.setText(modal.getTemperature()+"°C");
+        WeatherRVModal modal= WeatherRVModalarrayList.get(position);
+        holder.temperatureTV.setText(modal.getTemperature()+"°C");
         Picasso.get().load("http:".concat(modal.getIcon())).into(holder.conditionTV);
         holder.windTV.setText(modal.getWindspeed()+"Km/h");
         SimpleDateFormat input= new SimpleDateFormat("YYYY-MM-dd hh:mm");

@@ -6,7 +6,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black_shade_1"
+    android:background="#437197"
     tools:context=".MainActivity">
 
     <ProgressBar
@@ -27,9 +27,9 @@
         <ImageView
             android:id="@+id/idIVBlack"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="400dp"
             android:scaleType="centerCrop"
-            android:src="@color/black_shade_1" />
+             />
 
         <TextView
             android:id="@+id/idTVCityName"
@@ -51,43 +51,40 @@
             android:weightSum="5"
             >
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/idTILCity"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_weight="4.5"
-            android:background="@android:color/transparent"
-            android:hint="Enter city name"
-            android:padding="5dp"
-            app:hintTextColor="@color/white"
-            android:textColorHint="@color/white"
-           >
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/idEdtCity"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/transparent"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:singleLine="true"
-                android:textColor="@color/white"
-                android:textSize="14sp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-            <ImageView
-                android:id="@+id/idIVSearch"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/idTILCity"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:layout_weight="0.5"
-                android:layout_gravity="center"
+                android:layout_weight="4.5"
+                android:background="#A6FFFFFF"
+                android:hint="Enter city name"
+                android:padding="5dp"
+                app:hintTextColor="@color/black_shade_1"
+                android:textColorHint="@color/black_shade_1"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/idEdtCity"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:singleLine="true"
+                    android:textColor="@color/black_shade_1"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageView
+                android:id="@+id/idIVSearch"
+                android:layout_width="40dp"
+                android:layout_height="52dp"android:layout_marginTop="20dp"
                 android:background="@android:color/transparent"
                 android:src="@drawable/baseline_search_24"
                 app:tint="@color/white" />
 
-                />
+
         </LinearLayout>
 
         <TextView
@@ -141,7 +138,116 @@
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             />
+<RelativeLayout
+    android:layout_marginLeft="15dp"
+    android:layout_marginTop="500dp"
+    android:layout_width="110dp"
+    android:layout_height="150dp"
+    android:background="#7AFFFFFF">
+
+    <TextView
+
+        android:layout_marginTop="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Humidity: "
+        android:textSize="16sp" />
+
+    <ImageView
+        android:layout_marginTop="15dp"
+        android:id="@+id/idIVHumidity"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="80dp"
+        android:src="@drawable/humidity" />
+
+    <TextView
+
+        android:id="@+id/idTVHumidity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text=" "
+        android:textAlignment="center"
+        android:layout_marginLeft="20dp"
+        android:textSize="32sp" />
+
+
+</RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_marginTop="500dp"
+
+            android:layout_width="110dp"
+            android:layout_height="150dp"
+            android:layout_marginLeft="140dp"
+            android:background="#7AFFFFFF">
+
+
+
+            <TextView
+
+                android:layout_marginTop="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wind: "
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/idTVWind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+                android:textAlignment="center"
+                android:layout_marginTop="60dp"
+                android:textSize="30sp" />
+
+
+        <ImageView
+            android:layout_marginTop="15dp"
+            android:id="@+id/idIVWind"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="70dp"
+            android:src="@drawable/wind" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_marginLeft="260dp"
+            android:layout_marginTop="500dp"
+            android:layout_width="100dp"
+            android:layout_height="150dp"
+            android:background="#7AFFFFFF">
+        <TextView
+
+            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pressure: "
+            android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/idTVPresure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" "
+                android:textAlignment="center"
+                android:layout_marginTop="60dp"
+                android:textSize="30sp" />
+
+            <ImageView
+                android:layout_marginTop="15dp"
+                android:id="@+id/idIVPressur"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="80dp"
+                android:src="@drawable/pressure" />
+        </RelativeLayout>
+
 
     </RelativeLayout>
 
-  </RelativeLayout>
+</RelativeLayout>
