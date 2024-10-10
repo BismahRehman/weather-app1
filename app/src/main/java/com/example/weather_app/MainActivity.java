@@ -129,6 +129,8 @@ public class MainActivity extends AppCompatActivity {
     // Method to fetch weather information from OpenWeatherMap API
     private void getWeatherInfo(String cityName) {
         String url = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=metric&appid=4498450826d95a9f48e7ad5d43a09b87";
+        String forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&units=metric&appid=4498450826d95a9f48e7ad5d43a09b87";
+
         cityNameTV.setText(cityName);
         // Create a request queue for network calls
         RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
@@ -148,8 +150,8 @@ public class MainActivity extends AppCompatActivity {
                     // Get humidity and pressure
                     String humidity = main.getString("humidity") + "%";
                     String pressure = main.getString("pressure") + " hPa"; // Additional parameter
-                    humidityTV.setText(  humidity);
-                    pressureTV.setText( pressure);
+                    humidityTV.setText(humidity);
+                    pressureTV.setText(pressure);
 
                     JSONArray weatherArray = response.getJSONArray("weather");
                     JSONObject weatherObj = weatherArray.getJSONObject(0);
@@ -163,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
                     // Get wind speed
                     JSONObject wind = response.getJSONObject("wind");
                     String windSpeed = wind.getString("speed") + " m/s";
-                    windTV.setText( windSpeed);
+                    windTV.setText(windSpeed);
 
                     // Load weather icon
 //String icon = weatherObj.getString("icon");
@@ -176,25 +178,16 @@ public class MainActivity extends AppCompatActivity {
                     // Check if current time is day or night
                     if (currentTime >= sunrise && currentTime < sunset) {
                         // Daytime background
-                    //  Picasso.get().load("https://chitrabhumi.com/wp-content/uploads/2023/01/Good-Morning-Images-with-Sun-Sunrays-25.jpg?v=1673182125").into(backIV);
+                        //  Picasso.get().load("https://chitrabhumi.com/wp-content/uploads/2023/01/Good-Morning-Images-with-Sun-Sunrays-25.jpg?v=1673182125").into(backIV);
 
-                         homeRL.setBackgroundResource(R.drawable.image1);
+                        homeRL.setBackgroundResource(R.drawable.image1);
 
                     } else {
                         // Nighttime background
-                     //   Picasso.get().load("https://chitrabhumi.com/wp-content/uploads/2023/01/Good-Morning-Images-with-Sun-Sunrays-25.jpg?v=1673182125").into(backIV);
+                        //   Picasso.get().load("https://chitrabhumi.com/wp-content/uploads/2023/01/Good-Morning-Images-with-Sun-Sunrays-25.jpg?v=1673182125").into(backIV);
 
                         homeRL.setBackgroundResource(R.drawable.image2);
                     }
-//
-//                    int isDay = response.getJSONObject("current").getInt("is_day");
-//
-//                    if (isDay==1){
-//                        Picasso.get().load("https://chitrabhumi.com/wp-content/uploads/2023/01/Good-Morning-Images-with-Sun-Sunrays-25.jpg?v=1673182125").into(backIV);
-//                    }else {
-//                        Picasso.get().load("https://chitrabhumi.com/wp-content/uploads/2023/01/Good-Morning-Images-with-Sun-Sunrays-25.jpg?v=1673182125").into(backIV);
-//                    }
-
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -208,8 +201,52 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+//
+//        // Fetch 3-hour forecast
+//        JsonObjectRequest forecastRequest = new JsonObjectRequest(Request.Method.GET, forecastUrl, null, new Response.Listener<JSONObject>() {
+//            @Override
+//            public void onResponse(JSONObject response) {
+//                try {
+//                    // Extract the required data from the forecast response
+//                    JSONArray listArray = response.getJSONArray("list");
+//                    for (int i = 0; i < listArray.length(); i++) {
+//                        JSONObject forecastObj = listArray.getJSONObject(i);
+//
+//                        // Get the datetime for each 3-hour forecast
+//                        String dateTime = forecastObj.getString("dt_txt");
+//
+//                        // Get the main weather data for each forecast
+//                        JSONObject main = forecastObj.getJSONObject("main");
+//                        String temp = main.getString("temp") + "°C";
+//
+//                        // Get weather description and icon
+//                        JSONArray weatherArray = forecastObj.getJSONArray("weather");
+//                        JSONObject weatherObj = weatherArray.getJSONObject(0);
+//                        String condition = weatherObj.getString("description");
+//                        String icon = weatherObj.getString("icon");
+//
+//                        // Create a new WeatherRVModal object and add it to the list
+//                        weatherRVModalArrayList.add(new WeatherRVModal(dateTime, temp, condition, icon));
+//                    }
+//
+//                    // Notify the adapter that data has changed to update the RecyclerView
+//                    weatherRVAdapter.notifyDataSetChanged();
+//
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                Toast.makeText(MainActivity.this, "Failed to get forecast data", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+
         // Add request to the queue
         requestQueue.add(jsonObjectRequest);
+       // requestQueue.add
+        // (forecastRequest);
     }
 
     // Handle the permission request result
