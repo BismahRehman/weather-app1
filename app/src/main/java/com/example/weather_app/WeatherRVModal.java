@@ -7,6 +7,13 @@ public class WeatherRVModal {
     private String windspeed;
     private String icon;
 
+    public WeatherRVModal(String time, String temperature, String windspeed, String icon) {
+        this.time = time;
+        this.temperature = temperature;
+        this.windspeed = windspeed;
+        this.icon = icon;
+    }
+
     public String getTime() {
         return time;
     }
@@ -39,10 +46,8 @@ public class WeatherRVModal {
         this.icon = icon;
     }
 
-    public WeatherRVModal(String time, String temperature, String windspeed, String icon){
-        this.time=time;
-        this.temperature=temperature;
-        this.windspeed=windspeed;
-        this.icon=icon;
+    public String getImageUrl() {
+        // Construct the full image URL using the icon path
+        return "http://example.com/images/" + icon; // Change this to your actual image base URL
     }
 }

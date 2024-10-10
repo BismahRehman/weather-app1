@@ -1,3 +1,4 @@
+
 package com.example.weather_app;
 
 import android.Manifest;
@@ -37,6 +38,7 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
+
     private RelativeLayout homeRL;
     private ProgressBar loadingPB;
     private TextView cityNameTV, temperatureTV, conditionTV;
@@ -66,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         backIV = findViewById(R.id.idIVBlack);
         iconIV = findViewById(R.id.idIVIcon);
         searchIV = findViewById(R.id.idIVSearch);
-        // Inside onCreate method
+       //  Inside onCreate method
         humidityTV = findViewById(R.id.idTVHumidity);
         windTV = findViewById(R.id.idTVWind);
         pressureTV = findViewById(R.id.idTVPresure);
@@ -135,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
         // Create a request queue for network calls
         RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
 
-        // Make a request to the API
+         //Make a request to the API
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -201,52 +203,38 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//
-//        // Fetch 3-hour forecast
-//        JsonObjectRequest forecastRequest = new JsonObjectRequest(Request.Method.GET, forecastUrl, null, new Response.Listener<JSONObject>() {
-//            @Override
-//            public void onResponse(JSONObject response) {
-//                try {
-//                    // Extract the required data from the forecast response
-//                    JSONArray listArray = response.getJSONArray("list");
-//                    for (int i = 0; i < listArray.length(); i++) {
-//                        JSONObject forecastObj = listArray.getJSONObject(i);
-//
-//                        // Get the datetime for each 3-hour forecast
-//                        String dateTime = forecastObj.getString("dt_txt");
-//
-//                        // Get the main weather data for each forecast
-//                        JSONObject main = forecastObj.getJSONObject("main");
-//                        String temp = main.getString("temp") + "°C";
-//
-//                        // Get weather description and icon
-//                        JSONArray weatherArray = forecastObj.getJSONArray("weather");
-//                        JSONObject weatherObj = weatherArray.getJSONObject(0);
-//                        String condition = weatherObj.getString("description");
-//                        String icon = weatherObj.getString("icon");
-//
-//                        // Create a new WeatherRVModal object and add it to the list
-//                        weatherRVModalArrayList.add(new WeatherRVModal(dateTime, temp, condition, icon));
-//                    }
-//
-//                    // Notify the adapter that data has changed to update the RecyclerView
-//                    weatherRVAdapter.notifyDataSetChanged();
-//
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Toast.makeText(MainActivity.this, "Failed to get forecast data", Toast.LENGTH_SHORT).show();
-//            }
-//        });
 
-        // Add request to the queue
+//        // Fetch 3-hour forecast
+
+
+            // Fetch forecast data
+            JsonObjectRequest forecastRequest = new JsonObjectRequest(Request.Method.GET, forecastUrl, null,
+                    response -> {
+                        try {
+                            JSONArray listArray = response.getJSONArray("list");
+                            for (int i = 0; i < listArray.length(); i++) {
+                                JSONObject forecastObj = listArray.getJSONObject(i);
+                                String dateTime = forecastObj.getString("dt_txt");
+                                JSONObject main = forecastObj.getJSONObject("main");
+                                String temp = main.getString("temp") + "°C";
+                                JSONArray weatherArray = forecastObj.getJSONArray("weather");
+                                JSONObject weatherObj = weatherArray.getJSONObject(0);
+                                String condition = weatherObj.getString("description");
+                                String icon = weatherObj.getString("icon");
+                                weatherRVModalArrayList.add(new WeatherRVModal(dateTime, temp, condition, icon));
+                            }
+                            weatherRVAdapter.notifyDataSetChanged();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }, error -> {
+                Toast.makeText(MainActivity.this, "Failed to get forecast data", Toast.LENGTH_SHORT).show();
+            });
+
+
+            // Add request to the queue
         requestQueue.add(jsonObjectRequest);
-       // requestQueue.add
-        // (forecastRequest);
+        requestQueue.add(forecastRequest);
     }
 
     // Handle the permission request result
@@ -259,6 +247,6 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
             }
- }
-}
+        }
+    }
 }
